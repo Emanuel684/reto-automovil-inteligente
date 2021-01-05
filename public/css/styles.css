@@ -23,8 +23,11 @@ body{
   background-color: red;
   border-radius: 100%;
   border: 0px;
-  height: 50px;
-  width: 50px;
+  height: 80px;
+  width: 80px;
+  color: white;
+  font-weight: bold;
+  font-size: 170%;
 }
 
 .group-button-2 {
@@ -35,8 +38,11 @@ body{
   background-color: red;
   border-radius: 100%;
   border: 0px;
-  width: 50px;
-  height: 50px;
+}
+
+.img-button2{
+  width: 100px;
+  height: 100px;
 }
 
 .group-button-3 {
@@ -47,8 +53,11 @@ body{
   background-color: red;
   border-radius: 100%;
   border: 0px;
-  width: 50px;
-  height: 50px;
+}
+
+.img-button3{
+  width: 100px;
+  height: 100px;
 }
 
 .group-button-4 {
@@ -82,13 +91,16 @@ body{
 .group-button-6 {
   display: scroll;
   position: fixed;
-  bottom: 5%;
-  right: 30%;
+  bottom: 1%;
+  right: 35%;
   background-color: red;
   border-radius: 100%;
   border: 0px;
-  width: 50px;
-  height: 50px;
+}
+
+.img-button6{
+  width: 100px;
+  height: 100px;
 }
 
 .group-button-7 {
@@ -99,8 +111,10 @@ body{
   background-color: red;
   border-radius: 100%;
   border: 0px;
-  width: 50px;
-  height: 50px;
+}
+.img-button7{
+  width: 60px;
+  height: 60px;
 }
 
 .group-button-8 {
@@ -119,18 +133,27 @@ body{
 }
 
  /* BOTONES DE LA CAJA DE CAMBIOS */
-
+.cambios-box-div{
+  position: fixed;
+  bottom: 31.5%;
+  right: 20.2%;
+  width: 150px;
+  height: 150px;
+  background-color: black;
+  border-radius: 100%;
+  opacity: 0.8;
+}
 .group-cambios-N{
   position: fixed;
   background-color: red;
   border-radius: 100%;
   border: solid 0px;
-  bottom: 50%;
-  right: 50%;
+  bottom: 45%;
+  right: 28%;
   width: 30px;
   height: 30px;
   font-weight: bold;
-  color: black;
+  color: white;
   font-size: 100%;
 }
 .group-cambios-1{
@@ -138,12 +161,12 @@ body{
   background-color: red;
   border-radius: 100%;
   border: solid 0px;
-  bottom: 50%;
-  right: 50%;
+  bottom: 45%;
+  right: 25%;
   width: 30px;
   height: 30px;
   font-weight: bold;
-  color: black;
+  color: white;
   font-size: 100%;
 }
 .group-cambios-2{
@@ -151,21 +174,26 @@ body{
   background-color: red;
   border-radius: 100%;
   border: solid 0px;
+  bottom: 45%;
+  right: 22%;
   width: 30px;
   height: 30px;
   font-weight: bold;
-  color: black;
+  color: white;
   font-size: 100%;
 }
+
 .group-cambios-3{
   position: fixed;
   background-color: red;
   border-radius: 100%;
   border: solid 0px;
+  bottom: 38%;
+  right: 28%;
   width: 30px;
   height: 30px;
   font-weight: bold;
-  color: black;
+  color: white;
   font-size: 100%;
 }
 .group-cambios-4{
@@ -173,10 +201,12 @@ body{
   background-color: red;
   border-radius: 100%;
   border: solid 0px;
+  bottom: 38%;
+  right: 25%;
   width: 30px;
   height: 30px;
   font-weight: bold;
-  color: black;
+  color: white;
   font-size: 100%;
 }
 .group-cambios-R{
@@ -184,9 +214,11 @@ body{
   background-color: red;
   border-radius: 100%;
   border: solid 0px;
+  bottom: 38%;
+  right: 22%;
   width: 30px;
   height: 30px;
   font-weight: bold;
-  color: black;
+  color: white;
   font-size: 100%;
 }

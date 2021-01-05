@@ -1,6 +1,11 @@
 'use strict';
-let cajaCambios = 2;
+let cajaCambios;
 let freno_Mano = true;
+
+function caja_Cambios(num) {
+    document.getElementById("tablero-control").innerHTML = num;
+    cajaCambios = num;
+}
 
 function encendido() {
     if(cajaCambios === 0 && freno_Mano === true){
