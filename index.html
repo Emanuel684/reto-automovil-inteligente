@@ -11,24 +11,24 @@
 <div class="div-tablero-image">
     <img class="img-tablero-images" src="./public/images/Tablero1.png" alt="tablero1" >
 </div>
-<div class="div-tablero-info-control" id="tablero-control">Tablero de mensajes.</div>
+<div class="div-tablero-info-control" ><p class="div-p-text-control" id="tablero-control">Tablero de mensajes.</p></div>
 <div class="div-group-buttons">
-    <button class="group-button-1" id="encender_Carro" onclick="encenderCarro.encender()">Start</button>
+    <button class="group-button-1" id="encender_Carro" onclick="actionTesla.encender()">Start</button>
     <button class="group-button-2" onclick="derecha()"><img class="img-button2" src="./public/images/girarDerechaImages.png" ></button>
     <button class="group-button-3" id="" onclick="" ><img class="img-button3" src="./public/images/girarIzquierdaImages.png"></button>
-    <button class="group-button-4" id="" onclick="" ><img class="img-button4" src="./public/images/aceleradorImages.png"></button>
-    <button class="group-button-5" id="" onclick="" ><img class="img-button5" src="./public/images/frenoImages.png"></button>
-    <button class="group-button-6" id="" onclick="" ><img class="img-button6" onclick="actionFreno_Mano.funcionFrenoMano()" src="./public/images/frenoManoImages.png"></button>
+    <button class="group-button-4" id="" onclick="actionTesla.funcionAcelerador()" ><img class="img-button4"  src="./public/images/aceleradorImages.png"></button>
+    <button class="group-button-5" id="" onclick="actionTesla.funcionFrenado()" ><img class="img-button5"  src="./public/images/frenoImages.png"></button>
+    <button class="group-button-6" id="" onclick="actionTesla.funcionFrenoMano()" ><img class="img-button6" src="./public/images/frenoManoImages.png"></button>
     <button class="group-button-7" id="" onclick="" ><img class="img-button7" src="./public/images/intermitentesImages.png" ></button>
-    <button class="group-button-8" id="" onclick="" ><img class="img-button8" src="./public/images/clutchImages.png"></button>
+    <button class="group-button-8" id="" onclick="actionTesla.funcionClutch()" ><img class="img-button8" src="./public/images/clutchImages.png"></button>
 </div>
     <div class="cambios-box-div"></div>
-        <button class="group-cambios-N" onclick="cajaCambios_Marchas.marchas(0)">N</button>
-        <button class="group-cambios-1" onclick="cajaCambios_Marchas.marchas(1)">1</button>
-        <button class="group-cambios-2" onclick="cajaCambios_Marchas.marchas(2)">2</button>
-        <button class="group-cambios-3" onclick="cajaCambios_Marchas.marchas(3)">3</button>
-        <button class="group-cambios-4" onclick="cajaCambios_Marchas.marchas(4)">4</button>
-        <button class="group-cambios-R" onclick="cajaCambios_Marchas.marchas(5)">R</button>
+        <button class="group-cambios-N" onclick="actionTesla.marchas(0)">N</button>
+        <button class="group-cambios-1" onclick="actionTesla.marchas(1)">1</button>
+        <button class="group-cambios-2" onclick="actionTesla.marchas(2)">2</button>
+        <button class="group-cambios-3" onclick="actionTesla.marchas(3)">3</button>
+        <button class="group-cambios-4" onclick="actionTesla.marchas(4)">4</button>
+        <button class="group-cambios-R" onclick="actionTesla.marchas(5)">R</button>
     
 </body>
 </html>

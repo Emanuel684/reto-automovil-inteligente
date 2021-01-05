@@ -6,9 +6,13 @@ body{
   background-color: black;
   top: 2%;
   right: 2%;
-  width: 200px;
-  height: 40px;
-  color: aliceblue;
+  width: 350px;
+  height: 70px;
+}
+.div-p-text-control{
+  color: white;
+  font-weight: bold;
+  text-align: center;
 }
 .img-tablero-images {
   position: fixed;
