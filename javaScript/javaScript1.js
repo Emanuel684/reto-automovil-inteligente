@@ -1,126 +1,70 @@
-'use strict';
-let cajaCambios;
-let freno_Mano = true;
+"use strict";
 
-function caja_Cambios(num) {
-    document.getElementById("tablero-control").innerHTML = num;
-    cajaCambios = num;
-}
+// Variables utilizadas
 
-function encendido() {
-    if(cajaCambios === 0 && freno_Mano === true){
-    document.getElementById("tablero-control").innerHTML = "Encendido";
-    }else if(cajaCambios != 0){
-        document.getElementById("tablero-control").innerHTML = "Poner en neutra";
-    }else if(freno_Mano != true){
-        document.getElementById("tablero-control").innerHTML = "Poner el freno de mano";
-    }
-}
+let cajaCambios = null;
+let freno_Mano = false;
 
-function derecha() {
-    document.getElementById("tablero-control").innerHTML = "Girando a la derecha";
-}
+// Fin variables
 
-function alerta()
-    {
-    var mensaje;
-    var opcion = confirm("Clicka en Aceptar o Cancelar");
-    if (opcion == true) {
-        mensaje = "Has clickado OK";
-	} else {
-	    mensaje = "Has clickado Cancelar";
-	}
-	document.getElementById("ejemplo").innerHTML = mensaje;
+
+function alerta() {
+  var mensaje;
+  var opcion = confirm("Clicka en Aceptar o Cancelar");
+  if (opcion == true) {
+    mensaje = "Has clickado OK";
+  } else {
+    mensaje = "Has clickado Cancelar";
+  }
+  document.getElementById("ejemplo").innerHTML = mensaje;
 }
 
 // Funcionalidades del proyecto completo
 
-class carro {
-    constructor(acelerar, frenar, closh, estacionarias, giroDerecha, giroIzquierda, frenoMano){
-        this.acelerar = acelerar;
-        this.frenar = frenar;
-        this.closh = closh;
-        this.estacionarias = estacionarias;
-        this.giroDerecha = giroDerecha;
-        this.giroIzquierda = giroIzquierda;
-        this.frenoMano = frenoMano;
-    }
+class Ubicacion {}
 
-    acelerar(){
-        if(this.acelerar === true){
-            console.log(`El carro esta acelerarndo`);
-        } 
-    }
+class Tesla {
+  
 
-};
+  encender() {
+    if (cajaCambios === 0 && freno_Mano === true) {
+      document.getElementById("tablero-control").innerHTML = "Encendido.";
+    } else if (cajaCambios != 0) {
+      document.getElementById("tablero-control").innerHTML = "Poner en neutra.";
+    } else if (freno_Mano != true) {
+      document.getElementById("tablero-control").innerHTML =
+        "Poner el freno de mano.";
+      console.log(freno_Mano);
+    }
+  }
+
+  funcionFrenoMano() {
+    if (freno_Mano === true) {
+        console.log(freno_Mano);
+      document.getElementById("tablero-control").innerHTML =
+        "Freno de mano desactivado.";
+      return freno_Mano = false;
+    } else {
+        console.log(freno_Mano)
+        document.getElementById("tablero-control").innerHTML =
+        "Freno de mano activado.";
+      return (freno_Mano = true, console.log(freno_Mano));
+    }
+  }
+
+  marchas(num) {
+      document.getElementById('tablero-control').innerHTML = `Se encuentra en la marcha: ${num}`;
+    return (cajaCambios = num, console.log(cajaCambios));
+  }
+
+}
 
 // Fin funcionalidades del proyecto completo
 
+let encenderCarro = new Tesla();
+//document.getElementById("encender_Carro").addEventListener("click", encenderCarro.acelerar(cajaCambios, freno_Mano))
+//console.log(encenderCarro.acelerar(cajaCambios, freno_Mano))
 
-//Ejemplo de la clase
+let actionFreno_Mano = new Tesla();
 
-class Pizza {
-    constructor(masa,tamano,ingredientes){
-        this.masa = masa;
-        this.tamano = tamano;
-        this.ingredientes = ingredientes;
-    }
-
-    preparar(){
-        console.log(`Preparando pizza ${this.tamano}, ${this.masa}, 
-        Ingredientes: ${this.ingredientes}
-        `);
-    }
-
-    hornear(){
-        console.log(`La pizza se esta horneando.`);
-        return this;
-    }
-
-   empacar(){
-       console.log(`Empacando la pizza...`);
-       console.log(`Pizza lista para ser enviada... :)`);
-       return this;
-   } 
-
-}
-
-const pizzaChampinones = new Pizza("Masa Gruesa","Mediana",["Champiñones","pollo","queso"]);
-
-console.log(pizzaChampinones.preparar());
-console.log(pizzaChampinones.hornear());
-console.log(pizzaChampinones.empacar());
-
-const pizzaCarnes = new Pizza("Masa Delgada","Mediana",["carne","queso"]);
-console.log(pizzaCarnes.preparar());
-console.log(pizzaCarnes.hornear());
-console.log(pizzaCarnes.empacar());
-
-
-class Combos extends Pizza{
-
-    constructor(combo,cantidad,tamano,masa,ingredientes,bebida,postre){
-        super(tamano,masa,ingredientes);
-        this.combo = combo;
-        this.cantidad = cantidad;
-        this.bebida = bebida;
-        this.postre = postre;
-    }
-
-    elegirCombo(){
-        this.preparar();
-        this.hornear();
-        this.empacar();
-
-        console.log(` Pedido: Combo ${this.combo} - ${this.cantidad}
-        Pizza ${this.tamano}, ${this.masa}, ${this.ingredientes} + ${this.bebida}
-        ${this.postre}
-        `);
-
-        return this;
-    }
-}
-
-const Pedido = new Combos("Personal",1,"Mediana","Masa tradicional",["queso","peperoni"],"Coca-cola","Rollitos de canela");
-
-console.log(Pedido.elegirCombo());
+let cajaCambios_Marchas = new Tesla();
