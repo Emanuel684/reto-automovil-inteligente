@@ -1,0 +1,192 @@
+body{
+  background-color: black;
+}
+.div-tablero-info-control{
+  position: fixed;
+  background-color: black;
+  top: 2%;
+  right: 2%;
+  width: 200px;
+  height: 40px;
+  color: aliceblue;
+}
+.img-tablero-images {
+  position: fixed;
+  width: 99%;
+  height: 98%;
+}
+.group-button-1 {
+  display: scroll;
+  position: fixed;
+  bottom: 40%;
+  right: 48%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+  height: 50px;
+  width: 50px;
+}
+
+.group-button-2 {
+  display: scroll;
+  position: fixed;
+  bottom: 68%;
+  right: 50%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+.group-button-3 {
+  display: scroll;
+  position: fixed;
+  bottom: 68%;
+  right: 90%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+.group-button-4 {
+  display: scroll;
+  position: fixed;
+  bottom: 2%;
+  right: 50%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+}
+.img-button4{
+  width: 100px;
+  height: 100px;
+}
+.group-button-5 {
+  display: scroll;
+  position: fixed;
+  bottom: 2%;
+  background-color: red;
+  right: 63%;
+  border-radius: 100%;
+  border: 0px;
+  padding-top: 5px;
+}
+.img-button5 {
+  height: 100px;
+  width: 100px;
+}
+
+.group-button-6 {
+  display: scroll;
+  position: fixed;
+  bottom: 5%;
+  right: 30%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+.group-button-7 {
+  display: scroll;
+  position: fixed;
+  bottom: 75%;
+  right: 23%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+  width: 50px;
+  height: 50px;
+}
+
+.group-button-8 {
+  display: scroll;
+  position: fixed;
+  bottom: 1%;
+  right: 78%;
+  background-color: red;
+  border-radius: 100%;
+  border: 0px;
+}
+
+.img-button8{
+  width: 100px;
+  height: 110px;
+}
+
+ /* BOTONES DE LA CAJA DE CAMBIOS */
+
+.group-cambios-N{
+  position: fixed;
+  background-color: red;
+  border-radius: 100%;
+  border: solid 0px;
+  bottom: 50%;
+  right: 50%;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 100%;
+}
+.group-cambios-1{
+  position: fixed;
+  background-color: red;
+  border-radius: 100%;
+  border: solid 0px;
+  bottom: 50%;
+  right: 50%;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 100%;
+}
+.group-cambios-2{
+  position: fixed;
+  background-color: red;
+  border-radius: 100%;
+  border: solid 0px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 100%;
+}
+.group-cambios-3{
+  position: fixed;
+  background-color: red;
+  border-radius: 100%;
+  border: solid 0px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 100%;
+}
+.group-cambios-4{
+  position: fixed;
+  background-color: red;
+  border-radius: 100%;
+  border: solid 0px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 100%;
+}
+.group-cambios-R{
+  position: fixed;
+  background-color: red;
+  border-radius: 100%;
+  border: solid 0px;
+  width: 30px;
+  height: 30px;
+  font-weight: bold;
+  color: black;
+  font-size: 100%;
+}
