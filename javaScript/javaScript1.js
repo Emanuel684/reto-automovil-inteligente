@@ -19,6 +19,13 @@ let acelerador = false;
 let variableEncendido = false;
 let variableArranque = false;
 
+
+// Variables direccionales
+let luzEstacionarias = false;
+let varDireccionalDerecha = false;
+let varDireccionalIzquierda = false;                                                                                                                                            
+
+
 // Fin variables
 
 function alerta() {
@@ -34,17 +41,72 @@ function alerta() {
 
 // Funcionalidades del proyecto completo
 
+// Funcion de tiempo para las direccionales
+    function time(e) {
+        setTimeout(function () {
+            e.style.backgroundColor = 'yellow';
+
+        }, 100);
+    };
+// Fin
+
 // Creacion de la funcionalidad de las teclas
 
 window.addEventListener(
   "keydown",
   function (event) {
+    // Giros a la derecha y a la izquierda
     if (event.keyCode == 82) {
-      document.getElementById("tablero-control").innerHTML =
-        "Girando a la derecha.";
+      actionTesla.giroDerecha();
     }
+    if(event.keyCode == 76){
+        actionTesla.giroIzquierda();
+    }
+
+    // Freno de mano
+    if(event.keyCode == 32){
+        actionTesla.funcionFrenoMano();
+    }
+
+    // Direccionales
+    if(event.keyCode == 39){
+        actionTesla.direccionalDerecha();
+    }
+    if(event.keyCode == 37){
+        actionTesla.direccionalIzquierda();
+    }
+    if(event.keyCode == 40){
+        actionTesla.luzEstacionarias();
+    }
+
+    // Caja de marchas
+
+    // Marcha N
+    if(event.keyCode == 78){
+        actionTesla.marchas(0);
+    }
+    // Marcha 1
+    if(event.keyCode == 49){
+        actionTesla.marchas(1);
+    }
+    // Marcha 2
+    if(event.keyCode == 50){
+        actionTesla.marchas(2);
+    }
+    // Marcha 3
+    if(event.keyCode == 51){
+        actionTesla.marchas(3);
+    }
+    // Marcha 4
+    if(event.keyCode == 52){
+        actionTesla.marchas(4);
+    }
+    // Marcha R
+    if(event.keyCode == 53){
+        actionTesla.marchas(5);
+    }
+
     console.log(event);
-    // pizarra.innerHTML = event.key + " - " + event.keyCode;
   },
   false
 );
@@ -101,6 +163,7 @@ class Tesla {
         document.getElementById("tablero-control").innerHTML = "Arrancando...";
         document.getElementById("tablero-control").innerHTML =
           "Suelte el freno de pie y acelere y suelte el clutch progresivamente a la vez que acelera.";
+        return variableArranque = true;
       } else if (clutch != true) {
         document.getElementById("tablero-control").innerHTML =
           "Debe precionar el clutch.";
@@ -171,22 +234,66 @@ class Tesla {
     }
   }
 
+  // FUNCIONALIDAD DE LAS LUCES ESTACIONARIAS
+  luzEstacionarias(){
+      if(luzEstacionarias === true){
+        let direccional_derecha = document.getElementById('direccional-derecha');
+        let direccional_izquierda = document.getElementById('direccional-izquierda');
+        return (time(direccional_derecha),time(direccional_izquierda), console.log(luzEstacionarias));
+      }else if(luzEstacionarias === false){
+          return (luzEstacionarias = true, console.log(luzEstacionarias));
+      }
+  }
+  // FIN LUCES ESTACIONARIAS
+
+  // FUNCIONALIDAD DE LA DIRECCION
   giroDerecha() {
-    if (variableArranque === true && variableEncendido === true) {
+    if (variableArranque === true && variableEncendido === true && varDireccionalDerecha === true) {
+        document.getElementById('tablero-control').innerHTML = 'Girando a la rederecha.';
     } else if (variableArranque != true) {
       document.getElementById("tablero-control").innerHTML =
         "Debe de arrancar el automovil.";
     } else if (variableEncendido != true) {
       document.getElementById("tablero-control").innerHTML =
         "Debe de encerder el automovil";
+    }else if(varDireccionalDerecha != true){
+        document.getElementById('tablero-control').innerHTML = 'Debe encender la direccional derecha antes de girar.';
     }
   }
 
-  direccionalDerecha() {}
+  direccionalDerecha() {
+      if(varDireccionalDerecha === false){
+          document.getElementById('direccional-derecha').style.backgroundColor = 'yellow';
+          return varDireccionalDerecha = true;
+      }else if(varDireccionalDerecha === true){
+        document.getElementById('direccional-derecha').style.backgroundColor = 'transparent';
+          return varDireccionalDerecha = false;
+      }
+  }
 
-  giroIzquierda() {}
+  giroIzquierda() {
+    if (variableArranque === true && variableEncendido === true && varDireccionalIzquierda === true) {
+        document.getElementById('tablero-control').innerHTML = 'Girando a la izquierda.';
+    } else if (variableArranque != true) {
+      document.getElementById("tablero-control").innerHTML =
+        "Debe de arrancar el automovil.";
+    } else if (variableEncendido != true) {
+      document.getElementById("tablero-control").innerHTML =
+        "Debe de encerder el automovil";
+    }else if(varDireccionalIzquierda != true){
+        document.getElementById('tablero-control').innerHTML = 'Debe encender la direccional izquierda antes de girar.';
+    }
+  }
 
-  direccionalIzquierda() {}
+  direccionalIzquierda() {
+    if(varDireccionalIzquierda === false){
+        document.getElementById('direccional-izquierda').style.backgroundColor = 'yellow';
+        return varDireccionalIzquierda = true;
+    }else if(varDireccionalIzquierda === true){
+        document.getElementById('direccional-izquierda').style.backgroundColor = 'transparent';
+        return varDireccionalIzquierda = false;
+    }
+  }
 }
 
 // Fin funcionalidades del proyecto completo

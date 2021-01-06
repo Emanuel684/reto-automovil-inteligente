@@ -136,6 +136,37 @@ body{
   height: 110px;
 }
 
+
+.group-button-9 {
+  display: scroll;
+  position: fixed;
+  bottom: 65%;
+  right: 65%;
+  border-radius: 100%;
+  background-color: transparent;
+  border: 0px;
+}
+.img-button9{
+  width: 60px;
+  height: 60px;
+}
+
+.group-button-10 {
+  display: scroll;
+  position: fixed;
+  bottom: 65%;
+  right: 71%;
+  background-color: transparent;
+  border-radius: 100%;
+  border: 0px;
+}
+
+.img-button10{
+  width: 60px;
+  height: 60px;
+}
+
+
  /* BOTONES DE LA CAJA DE CAMBIOS */
 .cambios-box-div{
   position: fixed;

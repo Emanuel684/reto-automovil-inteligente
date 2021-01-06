@@ -1,0 +1,18 @@
+Teclas para manejar:
+
+R => Giro a la derecha
+L => Giro a la izquierda
+Space => Freno de mano
+
+DIRECCIONALES
+Direccional derecha => Flecha derecha 
+Direccional izquierda => Flecha izquierda
+Estacionarias => Flecha hacia abajo
+
+MARCHAS
+N => Letra N
+1 => Numero 1
+2 => Numero 2
+3 => Numero 3
+4 => Numero 4
+R => Numero 5

@@ -14,13 +14,16 @@
 <div class="div-tablero-info-control" ><p class="div-p-text-control" id="tablero-control">Tablero de mensajes.</p></div>
 <div class="div-group-buttons">
     <button class="group-button-1" id="encender_Carro" onclick="actionTesla.encender()">Start</button>
-    <button class="group-button-2" onclick="derecha()"><img class="img-button2" src="./public/images/girarDerechaImages.png" ></button>
-    <button class="group-button-3" id="" onclick="" ><img class="img-button3" src="./public/images/girarIzquierdaImages.png"></button>
+    <button class="group-button-2" onclick="actionTesla.giroDerecha()"><img class="img-button2" src="./public/images/girarDerechaImages.png" ></button>
+    <button class="group-button-3" id="" onclick="actionTesla.giroIzquierda()" ><img class="img-button3" src="./public/images/girarIzquierdaImages.png"></button>
     <button class="group-button-4" id="" onclick="actionTesla.funcionAcelerador()" ><img class="img-button4"  src="./public/images/aceleradorImages.png"></button>
     <button class="group-button-5" id="" onclick="actionTesla.funcionFrenado()" ><img class="img-button5"  src="./public/images/frenoImages.png"></button>
     <button class="group-button-6" id="" onclick="actionTesla.funcionFrenoMano()" ><img class="img-button6" src="./public/images/frenoManoImages.png"></button>
-    <button class="group-button-7" id="" onclick="" ><img class="img-button7" src="./public/images/intermitentesImages.png" ></button>
+    <button class="group-button-7" id="" onclick="actionTesla.luzEstacionarias()" ><img class="img-button7" src="./public/images/intermitentesImages.png" ></button>
     <button class="group-button-8" id="" onclick="actionTesla.funcionClutch()" ><img class="img-button8" src="./public/images/clutchImages.png"></button>
+    
+    <button class="group-button-9" id="direccional-derecha" onclick="actionTesla.direccionalDerecha()"><img class="img-button9" src="./public/images/intermitenteDerecha.png" ></button>
+    <button class="group-button-10" id="direccional-izquierda" onclick="actionTesla.direccionalIzquierda()" ><img class="img-button10" src="./public/images/intermitenteIzquierda.png"></button>
 </div>
     <div class="cambios-box-div"></div>
         <button class="group-cambios-N" onclick="actionTesla.marchas(0)">N</button>
