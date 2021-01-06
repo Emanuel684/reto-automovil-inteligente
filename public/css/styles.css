@@ -1,7 +1,7 @@
-body{
+body {
   background-color: black;
 }
-.div-tablero-info-control{
+.div-tablero-info-control {
   position: fixed;
   background-color: black;
   top: 2%;
@@ -9,11 +9,37 @@ body{
   width: 350px;
   height: 70px;
 }
-.div-p-text-control{
+.div-p-text-control {
   color: white;
   font-weight: bold;
   text-align: center;
 }
+
+/* Partes del tablero para mostrar la informacion del viaje */
+
+.div-tablero-info-control-distancia-recorrida {
+  position: fixed;
+  background-color: black;
+  top: 2%;
+  right: 87%;
+  font-size: 15px;
+  width: 150px;
+  height: 60px;
+}
+
+.div-tablero-info-control-velocidad-actual {
+  position: fixed;
+  background-color: black;
+  top: 2%;
+  right: 75%;
+  font-size: 15px;
+  width: 150px;
+  height: 60px;
+}
+
+
+/* Fin partes del tablero */
+
 .img-tablero-images {
   position: fixed;
   width: 99%;
@@ -44,7 +70,7 @@ body{
   border: 0px;
 }
 
-.img-button2{
+.img-button2 {
   width: 100px;
   height: 100px;
 }
@@ -59,7 +85,7 @@ body{
   border: 0px;
 }
 
-.img-button3{
+.img-button3 {
   width: 100px;
   height: 100px;
 }
@@ -73,7 +99,7 @@ body{
   border-radius: 100%;
   border: 0px;
 }
-.img-button4{
+.img-button4 {
   width: 100px;
   height: 100px;
 }
@@ -102,7 +128,7 @@ body{
   border: 0px;
 }
 
-.img-button6{
+.img-button6 {
   width: 100px;
   height: 100px;
 }
@@ -116,7 +142,7 @@ body{
   border-radius: 100%;
   border: 0px;
 }
-.img-button7{
+.img-button7 {
   width: 60px;
   height: 60px;
 }
@@ -131,11 +157,10 @@ body{
   border: 0px;
 }
 
-.img-button8{
+.img-button8 {
   width: 100px;
   height: 110px;
 }
-
 
 .group-button-9 {
   display: scroll;
@@ -146,7 +171,7 @@ body{
   background-color: transparent;
   border: 0px;
 }
-.img-button9{
+.img-button9 {
   width: 60px;
   height: 60px;
 }
@@ -161,14 +186,57 @@ body{
   border: 0px;
 }
 
-.img-button10{
+.img-button10 {
   width: 60px;
   height: 60px;
 }
 
+/* ESTOS SON LOS BOTONES EN AMARILLO */
+.group-button-derecha-amarillo {
+  display: scroll;
+  position: fixed;
+  bottom: 65%;
+  right: 65%;
+  border-radius: 100%;
+  animation: alerta 1.5s linear 100ms infinite;
+  background-color: yellow;
+  display: none;
+  border: 0px;
+}
 
- /* BOTONES DE LA CAJA DE CAMBIOS */
-.cambios-box-div{
+.group-button-izquierda-amarillo {
+  display: scroll;
+  position: fixed;
+  bottom: 65%;
+  right: 71%;
+  animation: alerta 1.5s linear 100ms infinite;
+  background-color: yellow;
+  display: none;
+  border-radius: 100%;
+  border: 0px;
+}
+
+
+/* ANIMACIONES */
+@-webkit-keyframes alerta {
+  from {opacity: 0;}
+  25% {opacity: 1;}
+  75% {opacity: 1;}
+  to {opacity: 0;}
+} 
+
+@keyframes alerta {
+  from {opacity: 0;}
+  25% {opacity: 1;}
+  75% {opacity: 1;}
+  to {opacity: 0;}
+}
+
+
+
+
+/* BOTONES DE LA CAJA DE CAMBIOS */
+.cambios-box-div {
   position: fixed;
   bottom: 31.5%;
   right: 20.2%;
@@ -178,7 +246,7 @@ body{
   border-radius: 100%;
   opacity: 0.8;
 }
-.group-cambios-N{
+.group-cambios-N {
   position: fixed;
   background-color: red;
   border-radius: 100%;
@@ -191,7 +259,7 @@ body{
   color: white;
   font-size: 100%;
 }
-.group-cambios-1{
+.group-cambios-1 {
   position: fixed;
   background-color: red;
   border-radius: 100%;
@@ -204,7 +272,7 @@ body{
   color: white;
   font-size: 100%;
 }
-.group-cambios-2{
+.group-cambios-2 {
   position: fixed;
   background-color: red;
   border-radius: 100%;
@@ -218,7 +286,7 @@ body{
   font-size: 100%;
 }
 
-.group-cambios-3{
+.group-cambios-3 {
   position: fixed;
   background-color: red;
   border-radius: 100%;
@@ -231,7 +299,7 @@ body{
   color: white;
   font-size: 100%;
 }
-.group-cambios-4{
+.group-cambios-4 {
   position: fixed;
   background-color: red;
   border-radius: 100%;
@@ -244,7 +312,7 @@ body{
   color: white;
   font-size: 100%;
 }
-.group-cambios-R{
+.group-cambios-R {
   position: fixed;
   background-color: red;
   border-radius: 100%;

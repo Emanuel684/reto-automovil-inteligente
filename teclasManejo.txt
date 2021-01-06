@@ -4,6 +4,11 @@ R => Giro a la derecha
 L => Giro a la izquierda
 Space => Freno de mano
 
+PEDALES
+E => Acelerar
+W => Freno de pie
+Q => Clutch
+
 DIRECCIONALES
 Direccional derecha => Flecha derecha 
 Direccional izquierda => Flecha izquierda
