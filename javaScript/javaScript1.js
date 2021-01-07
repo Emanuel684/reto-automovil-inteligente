@@ -9,6 +9,8 @@ let timeParada = 0;
 let kmXParada = 0;
 // Fin variables de ubicacion
 
+let var_recorrido_recorrer = 0;
+
 // Variables para calcular la velocidad, y la distacia recorrida
 let velocidadAcelerando = 0;
 let distanciaRecorrida_velocidad = 0;
@@ -39,13 +41,19 @@ let varDireccionalIzquierda = false;
 // Funciones mientras conduce
 
 function cal_velocidadCrucero() {
-  console.log(velocidadAcelerando, cajaCambios);
+  console.log(
+    "Esta es la velocidad:",
+    velocidadAcelerando,
+    "Este es la caja de cambio:",
+    cajaCambios
+  );
   cal_distanciaRecorrida();
   cal_tiempoViaje();
 
   if (velocidadAcelerando < 30 && cajaCambios === 1) {
-    console.log("Se ejecuto la primera velocidad.");
-    document.getElementById("tablero-control-velocidad-actual").innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
+    document.getElementById(
+      "tablero-control-velocidad-actual"
+    ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
     setTimeout(cal_velocidadCrucero, 500);
   } else if (velocidadAcelerando >= 30 && cajaCambios === 1) {
     console.log("Se ejecuto el else if para la marcha 1.");
@@ -58,7 +66,6 @@ function cal_velocidadCrucero() {
     velocidadAcelerando < 60 &&
     cajaCambios === 2
   ) {
-    console.log("Se ejecuto la segunda velocidad.");
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
@@ -68,7 +75,6 @@ function cal_velocidadCrucero() {
     velocidadAcelerando === 60 &&
     cajaCambios === 2
   ) {
-    console.log("Se ejecuto el else if para la marcha 2.");
     document.getElementById("tablero-control").innerHTML =
       "Cambie a la siguiente marcha 3.";
   }
@@ -78,7 +84,6 @@ function cal_velocidadCrucero() {
     velocidadAcelerando < 86 &&
     cajaCambios === 3
   ) {
-    console.log("Se ejecuto la tercera velocidad");
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
@@ -97,7 +102,6 @@ function cal_velocidadCrucero() {
     velocidadAcelerando < 110 &&
     cajaCambios === 4
   ) {
-    console.log("Se ejecuto la cuarta velocidad.");
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
@@ -122,26 +126,44 @@ function cal_frenadoVelocidad() {
 }
 
 function cal_tiempoViaje() {
+  timeViaje_Tesla = Math.floor(Math.sqrt(var_recorrido_recorrer));
 
+  if (timeViaje_Tesla >= 0) {
+    document.getElementById(
+      "tablero-control-tiempo-transcurrido"
+    ).innerHTML = `Tiempo: ${timeViaje_Tesla} Min`;
+    console.log("Este es el tiempo del viaje:", timeViaje_Tesla);
+  }
+
+  /*
   timeViaje_Tesla = Math.floor(Math.sqrt(distanciaRecorrido));
-  document.getElementById('tablero-control-tiempo-transcurrido').innerHTML = `Tiempo: ${timeViaje_Tesla} Min`
-  console.log(timeViaje_Tesla);
+  document.getElementById(
+    "tablero-control-tiempo-transcurrido"
+  ).innerHTML = `Tiempo: ${timeViaje_Tesla} Min`;
+  console.log('Este es el tiempo del viaje:',timeViaje_Tesla);
+*/
 }
 
 function cal_distanciaRecorrida() {
-  console.log('Esta es la funcion de las distancia.');
+  var_recorrido_recorrer = distanciaRecorrido;
   // distanciaRecorrida_velocidad = distanciaRecorrido;
-  console.log(distanciaRecorrida_velocidad);
-  if(distanciaRecorrida_velocidad >= 0){
-    distanciaRecorrido = distanciaRecorrido - velocidadAcelerando;
-    distanciaRecorrida_velocidad = distanciaRecorrida_velocidad + velocidadAcelerando;
-    document.getElementById('tablero-control-distacia-recorrida').innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+  if (distanciaRecorrida_velocidad <= distanciaRecorrido) {
+    var_recorrido_recorrer =
+      var_recorrido_recorrer - distanciaRecorrida_velocidad;
+    distanciaRecorrida_velocidad =
+      distanciaRecorrida_velocidad + velocidadAcelerando;
+    document.getElementById(
+      "tablero-control-distacia-recorrida"
+    ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
   }
 
-  
-
   // distanciaRecorrida_velocidad = distanciaRecorrido - 2;
-  // console.log(distanciaRecorrida_velocidad)
+  console.log("Esta es la distacia a recorrer:", distanciaRecorrido);
+  console.log("Esta es la distancia recorrida:", distanciaRecorrida_velocidad);
+  console.log(
+    "Esta es la variable para calcular el tiempo:",
+    var_recorrido_recorrer
+  );
   return distanciaRecorrida_velocidad;
 }
 
@@ -253,7 +275,7 @@ class Ubicacion {
   distanciaRecorrido() {
     var valor = prompt("Que distacia recorreras?", "");
     if (valor != "") {
-      alert("Gracias por ingresar el valor: " + valor);
+      // alert("Gracias por ingresar el valor: " + valor);
       return (
         (distanciaRecorrido = parseInt(valor, 10)),
         this.calcularDestino(),
@@ -416,15 +438,16 @@ class Tesla {
   // FIN FUNCIONAMIENTO MIENTRAS ACELERA EL CARRO
 
   // Funcionalidad de frenado
-  frenandoTesla(){
-    console.log('Se esta ejecutando el frenado con el tesla.');
+  frenandoTesla() {
+    console.log("Se esta ejecutando el frenado con el tesla.");
 
-    if(variableEncendido === true &&
+    if (
+      variableEncendido === true &&
       variableArranque === true &&
       acelerador === false &&
       freno === true
-    ){
-      console.log('Se esta ejecutando la funcion...');
+    ) {
+      console.log("Se esta ejecutando la funcion...");
       cal_frenadoVelocidad();
     }
   }
@@ -528,9 +551,6 @@ class Tesla {
     }
   }
   // FIN DE LA FUNCIONALIDAD DE LA DIRECCIONAL IZQUIERDA
-
-
-
 }
 
 // Fin funcionalidades del proyecto completo
