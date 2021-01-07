@@ -37,6 +37,16 @@ body {
   height: 60px;
 }
 
+.div-tablero-info-control-tiempo-transcurrido-viaje {
+  position: fixed;
+  background-color: black;
+  top: 2%;
+  right: 63%;
+  font-size: 15px;
+  width: 150px;
+  height: 60px;
+}
+
 
 /* Fin partes del tablero */
 

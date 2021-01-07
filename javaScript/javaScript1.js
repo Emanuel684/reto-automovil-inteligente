@@ -2,18 +2,18 @@
 
 // VARAIBLES MIENTRAS CONDUCE
 
-// Variables para calcular la velocidad, y la distacia recorrida
-let velocidadAcelerando = 0;
-let distanciaRecorrida_velocidad = 0;
-let timeViaje_Tesla = 0;
-// Fin de las variables para calcular
-
 // Variables para la localizacion en el mapa
 let numParadas = 0;
 let distanciaRecorrido = 0;
 let timeParada = 0;
 let kmXParada = 0;
 // Fin variables de ubicacion
+
+// Variables para calcular la velocidad, y la distacia recorrida
+let velocidadAcelerando = 0;
+let distanciaRecorrida_velocidad = 0;
+let timeViaje_Tesla = 0;
+// Fin de las variables para calcular
 
 // FIN VARIABLES MIENTRAS CONDUCE
 
@@ -40,12 +40,12 @@ let varDireccionalIzquierda = false;
 
 function cal_velocidadCrucero() {
   console.log(velocidadAcelerando, cajaCambios);
+  cal_distanciaRecorrida();
+  cal_tiempoViaje();
 
   if (velocidadAcelerando < 30 && cajaCambios === 1) {
     console.log("Se ejecuto la primera velocidad.");
-    document.getElementById(
-      "tablero-control-velocidad-actual"
-    ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
+    document.getElementById("tablero-control-velocidad-actual").innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
     setTimeout(cal_velocidadCrucero, 500);
   } else if (velocidadAcelerando >= 30 && cajaCambios === 1) {
     console.log("Se ejecuto el else if para la marcha 1.");
@@ -121,9 +121,28 @@ function cal_frenadoVelocidad() {
   }
 }
 
-function tiempoViaje(distanciaRecorrido, velocidadAcelerando) {
-  let funVar_tiempoViaje = distanciaRecorrido / velocidadAcelerando;
-  return funVar_tiempoViaje;
+function cal_tiempoViaje() {
+
+  timeViaje_Tesla = Math.floor(Math.sqrt(distanciaRecorrido));
+  document.getElementById('tablero-control-tiempo-transcurrido').innerHTML = `Tiempo: ${timeViaje_Tesla} Min`
+  console.log(timeViaje_Tesla);
+}
+
+function cal_distanciaRecorrida() {
+  console.log('Esta es la funcion de las distancia.');
+  // distanciaRecorrida_velocidad = distanciaRecorrido;
+  console.log(distanciaRecorrida_velocidad);
+  if(distanciaRecorrida_velocidad >= 0){
+    distanciaRecorrido = distanciaRecorrido - velocidadAcelerando;
+    distanciaRecorrida_velocidad = distanciaRecorrida_velocidad + velocidadAcelerando;
+    document.getElementById('tablero-control-distacia-recorrida').innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+  }
+
+  
+
+  // distanciaRecorrida_velocidad = distanciaRecorrido - 2;
+  // console.log(distanciaRecorrida_velocidad)
+  return distanciaRecorrida_velocidad;
 }
 
 // Fin funciones
@@ -390,11 +409,26 @@ class Tesla {
       acelerador === true
     ) {
       console.log("Ejecutara la funcion...");
-      console.log(cal_velocidadCrucero());
+      cal_velocidadCrucero();
     }
   }
 
   // FIN FUNCIONAMIENTO MIENTRAS ACELERA EL CARRO
+
+  // Funcionalidad de frenado
+  frenandoTesla(){
+    console.log('Se esta ejecutando el frenado con el tesla.');
+
+    if(variableEncendido === true &&
+      variableArranque === true &&
+      acelerador === false &&
+      freno === true
+    ){
+      console.log('Se esta ejecutando la funcion...');
+      cal_frenadoVelocidad();
+    }
+  }
+  // Fin funcionalidad de frenado
 
   // FUNCIONALIDAD DE LAS LUCES ESTACIONARIAS
   luzEstacionarias() {
@@ -494,6 +528,9 @@ class Tesla {
     }
   }
   // FIN DE LA FUNCIONALIDAD DE LA DIRECCIONAL IZQUIERDA
+
+
+
 }
 
 // Fin funcionalidades del proyecto completo
