@@ -10,6 +10,12 @@ let kmXParada = 0;
 // Fin variables de ubicacion
 
 let var_recorrido_recorrer = 0;
+// let var_tiempo_faltante = 0;
+
+// Variables para las paradas
+let cantidad_Paradas_listas = 0;
+let km_parada_lista = 0;
+// Fin
 
 // Variables para calcular la velocidad, y la distacia recorrida
 let velocidadAcelerando = 0;
@@ -127,13 +133,20 @@ function cal_frenadoVelocidad() {
 
 function cal_tiempoViaje() {
   timeViaje_Tesla = Math.floor(Math.sqrt(var_recorrido_recorrer));
-
-  if (timeViaje_Tesla >= 0) {
+  // var_tiempo_faltante = timeViaje_Tesla;
+  // console.log(var_tiempo_faltante);
+  if (timeViaje_Tesla > 0) {
+    // console.log(var_tiempo_faltante);
+    // var_tiempo_faltante = var_tiempo_faltante - timeViaje_Tesla;
     document.getElementById(
       "tablero-control-tiempo-transcurrido"
     ).innerHTML = `Tiempo: ${timeViaje_Tesla} Min`;
     console.log("Este es el tiempo del viaje:", timeViaje_Tesla);
+    // console.log('Esta es la varaible var_tiempo_faltante:', var_tiempo_faltante);
   }
+
+
+
 
   /*
   timeViaje_Tesla = Math.floor(Math.sqrt(distanciaRecorrido));
@@ -141,20 +154,101 @@ function cal_tiempoViaje() {
     "tablero-control-tiempo-transcurrido"
   ).innerHTML = `Tiempo: ${timeViaje_Tesla} Min`;
   console.log('Este es el tiempo del viaje:',timeViaje_Tesla);
+
+
+    else if(timeViaje_Tesla === 0){
+    document.getElementById("div-stop-fin-trayecto").style.display =
+        "block";
+  }
+
 */
 }
 
+ function time_action_Parada(time) {
+
+    
+    if(time > 0){
+      for(let i = time; i > 0; i--){
+        time--
+        document.getElementById('p-stop-parada-tiempo').innerHTML = `Tiempo:${time}`;
+      document.getElementById('div-stop-fin-trayecto').style.display = 'block';
+      }
+    }else if(time === 0){
+      console.log('Parada terminada.');
+    }
+ }
+
 function cal_distanciaRecorrida() {
   var_recorrido_recorrer = distanciaRecorrido;
+  km_parada_lista = kmXParada;
+
   // distanciaRecorrida_velocidad = distanciaRecorrido;
-  if (distanciaRecorrida_velocidad <= distanciaRecorrido) {
+  if (distanciaRecorrida_velocidad < distanciaRecorrido) {
     var_recorrido_recorrer =
       var_recorrido_recorrer - distanciaRecorrida_velocidad;
     distanciaRecorrida_velocidad =
       distanciaRecorrida_velocidad + velocidadAcelerando;
+
+
+    // Esta parte es para crear las paradas
+    console.log(numParadas, timeParada, kmXParada);
+
+    if(distanciaRecorrida_velocidad >= km_parada_lista && cantidad_Paradas_listas < numParadas){
+      cantidad_Paradas_listas++;
+      console.log('Se ejecuto la parada:',cantidad_Paradas_listas);
+
+      // km_parada_lista = km_parada_lista + kmXParada;
+      km_parada_lista = km_parada_lista * cantidad_Paradas_listas;
+      console.log('Proxima parada a: ', km_parada_lista);
+
+      time_action_Parada(timeParada);
+
+
+      if(distanciaRecorrida_velocidad > distanciaRecorrido){
+        distanciaRecorrida_velocidad = distanciaRecorrido;
     document.getElementById(
       "tablero-control-distacia-recorrida"
     ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+    document.getElementById("div-stop-fin-trayecto").style.display =
+        "block";
+      }else{
+        document.getElementById(
+          "tablero-control-distacia-recorrida"
+        ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+      }
+    
+    }else{
+      if(distanciaRecorrida_velocidad > distanciaRecorrido){
+        distanciaRecorrida_velocidad = distanciaRecorrido;
+    document.getElementById(
+      "tablero-control-distacia-recorrida"
+    ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+    document.getElementById("div-stop-fin-trayecto").style.display =
+        "block";
+      }else{
+        document.getElementById(
+          "tablero-control-distacia-recorrida"
+        ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+      }
+    }
+
+    
+
+    // Fin
+    /*
+      if(distanciaRecorrida_velocidad > distanciaRecorrido){
+        distanciaRecorrida_velocidad = distanciaRecorrido;
+    document.getElementById(
+      "tablero-control-distacia-recorrida"
+    ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+    document.getElementById("div-stop-fin-trayecto").style.display =
+        "block";
+      }else{
+        document.getElementById(
+          "tablero-control-distacia-recorrida"
+        ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+      }
+    */
   }
 
   // distanciaRecorrida_velocidad = distanciaRecorrido - 2;
@@ -407,6 +501,7 @@ class Tesla {
           this.acelerandoTesla()
         );
       } else if (acelerador === false && cajaCambios != 0) {
+        
         document.getElementById("tablero-control").innerHTML =
           "El acelerador se encuentra activado.";
         console.log("Acelerador activado.");
@@ -414,6 +509,23 @@ class Tesla {
           (acelerador = true), (variableArranque = true), this.acelerandoTesla()
         );
       }
+      
+
+      // Esta es una linea de comiezo para solucionar un error
+      /*
+      else if(acelerador === false && clutch === true && freno === true && cajaCambios === 1){
+        
+        document.getElementById('tablero-control').innerHTML = 'Quite el freno de pie y el clutch.';
+        
+      }else if(acelerador === false && clutch === false && freno === false && cajaCambios === 1){
+        return(
+          (acelerador = true),
+          (variableArranque = true),
+          this.acelerandoTesla()
+        )
+      }
+      */
+
     } else {
       document.getElementById("tablero-control").innerHTML =
         "El carro no se encuentra encendido.";

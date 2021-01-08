@@ -335,3 +335,28 @@ body {
   color: white;
   font-size: 100%;
 }
+
+/* Alerta al finalizar el trayecto */
+.div-stop-fin-trayecto{
+  position: fixed;
+  width: 99%;
+  height: 98%;
+  z-index: 1000;
+  display: none;
+  background-color: rgba(0, 0, 0, 0.911);
+}
+.p-stop-fin-trayecto{
+  color: white;
+  z-index: 1000;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+}
+.img-stop-fin-trayecto{
+  height: 400px;
+  z-index: 1000;
+  width: 400px;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
