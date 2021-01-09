@@ -9,12 +9,19 @@ let timeParada = 0;
 let kmXParada = 0;
 // Fin variables de ubicacion
 
+let stop_timeout = 0;
+
 let var_recorrido_recorrer = 0;
 // let var_tiempo_faltante = 0;
 
 // Variables para las paradas
 let cantidad_Paradas_listas = 0;
 let km_parada_lista = 0;
+let time_en_parada = 0;
+// Comprobante para las paradas
+let comprobante_tiempo_en_parada = 0;
+
+let comprobante_parada = false;
 // Fin
 
 // Variables para calcular la velocidad, y la distacia recorrida
@@ -56,11 +63,11 @@ function cal_velocidadCrucero() {
   cal_distanciaRecorrida();
   cal_tiempoViaje();
 
-  if (velocidadAcelerando < 30 && cajaCambios === 1) {
+  if (velocidadAcelerando < 30 && cajaCambios === 1 && comprobante_parada === false) {
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
-    setTimeout(cal_velocidadCrucero, 500);
+     stop_timeout = setTimeout(cal_velocidadCrucero, 1000);
   } else if (velocidadAcelerando >= 30 && cajaCambios === 1) {
     console.log("Se ejecuto el else if para la marcha 1.");
     document.getElementById("tablero-control").innerHTML =
@@ -75,7 +82,7 @@ function cal_velocidadCrucero() {
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
-    setTimeout(cal_velocidadCrucero, 500);
+    setTimeout(cal_velocidadCrucero, 1000);
   } else if (
     velocidadAcelerando > 30 &&
     velocidadAcelerando === 60 &&
@@ -93,7 +100,7 @@ function cal_velocidadCrucero() {
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
-    setTimeout(cal_velocidadCrucero, 500);
+    setTimeout(cal_velocidadCrucero, 1000);
   } else if (
     velocidadAcelerando > 60 &&
     velocidadAcelerando === 86 &&
@@ -111,7 +118,7 @@ function cal_velocidadCrucero() {
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
-    setTimeout(cal_velocidadCrucero, 500);
+    setTimeout(cal_velocidadCrucero, 1000);
   } else if (
     velocidadAcelerando > 86 &&
     velocidadAcelerando === 110 &&
@@ -164,23 +171,50 @@ function cal_tiempoViaje() {
 */
 }
 
- function time_action_Parada(time) {
+ function time_action_Parada() {
+  
+    console.log(timeParada);
+    console.log(time_en_parada);
+  
 
-    
-    if(time > 0){
-      for(let i = time; i > 0; i--){
-        time--
-        document.getElementById('p-stop-parada-tiempo').innerHTML = `Tiempo:${time}`;
-      document.getElementById('div-stop-fin-trayecto').style.display = 'block';
+    if(time_en_parada === 0 && comprobante_tiempo_en_parada === 0){
+      time_en_parada = timeParada;
+      comprobante_tiempo_en_parada = 1;
+      console.log('Se ejecuto el if con el comprobante:',comprobante_tiempo_en_parada,time_en_parada);
+    }
+
+
+    if(time_en_parada > 0){
+
+      document.getElementById('div-stop-fin-trayecto-id').style.display = 'block';
+      clearTimeout(stop_timeout);
+      comprobante_parada = true;
+      let interval = setInterval(function () {
+        if(time_en_parada > 0 && document.getElementById('div-stop-fin-trayecto-id').style.display == 'block'){
+          document.getElementById('p-stop-parada-tiempo').innerHTML = `Tiempo:${time_en_parada -= 1}`;
+      }else{
+        console.log('Esto es dentro del else:',time_en_parada);
+        document.getElementById('p-stop-parada-tiempo').innerHTML = `Tiempo:${time_en_parada}`;
+        document.getElementById('div-stop-fin-trayecto-id').style.display = "none";
+        comprobante_parada = false;
+        console.log('Parada terminada.');
+         
+        time_en_parada = timeParada;
+        clearInterval(interval);
       }
-    }else if(time === 0){
-      console.log('Parada terminada.');
+      }, 1500);
+      console.log('timeParada en el condicional:',time_en_parada);
+      
+      // setTimeout(time_action_Parada(),800);
+
     }
  }
 
 function cal_distanciaRecorrida() {
   var_recorrido_recorrer = distanciaRecorrido;
-  km_parada_lista = kmXParada;
+  // km_parada_lista = kmXParada;
+  console.log('Km_parada_lista antes del ciclo:',km_parada_lista);
+  console.log('kmXParada fuera de ciclo:',kmXParada);
 
   // distanciaRecorrida_velocidad = distanciaRecorrido;
   if (distanciaRecorrida_velocidad < distanciaRecorrido) {
@@ -189,7 +223,11 @@ function cal_distanciaRecorrida() {
     distanciaRecorrida_velocidad =
       distanciaRecorrida_velocidad + velocidadAcelerando;
 
-
+      if(km_parada_lista === 0){
+        km_parada_lista = kmXParada;
+        console.log('km_parada_lista era 0 ahora es:',kmXParada);
+      }
+    
     // Esta parte es para crear las paradas
     console.log(numParadas, timeParada, kmXParada);
 
@@ -198,10 +236,12 @@ function cal_distanciaRecorrida() {
       console.log('Se ejecuto la parada:',cantidad_Paradas_listas);
 
       // km_parada_lista = km_parada_lista + kmXParada;
-      km_parada_lista = km_parada_lista * cantidad_Paradas_listas;
-      console.log('Proxima parada a: ', km_parada_lista);
+      // kmXParada = kmXParada + kmXParada;
+      km_parada_lista = km_parada_lista + kmXParada;
+      console.log('kmXParada en ciclo:',kmXParada)
+      console.log('km_parada_lista en ciclo: ', km_parada_lista);
 
-      time_action_Parada(timeParada);
+      time_action_Parada();
 
 
       if(distanciaRecorrida_velocidad > distanciaRecorrido){
@@ -209,8 +249,8 @@ function cal_distanciaRecorrida() {
     document.getElementById(
       "tablero-control-distacia-recorrida"
     ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
-    document.getElementById("div-stop-fin-trayecto").style.display =
-        "block";
+    document.getElementById("p-stop-parada-tiempo").innerHTML = "Trayecto Finalizado...";
+    document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
       }else{
         document.getElementById(
           "tablero-control-distacia-recorrida"
@@ -223,8 +263,8 @@ function cal_distanciaRecorrida() {
     document.getElementById(
       "tablero-control-distacia-recorrida"
     ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
-    document.getElementById("div-stop-fin-trayecto").style.display =
-        "block";
+    document.getElementById("p-stop-parada-tiempo").innerHTML = "Trayecto Finalizado...";
+    document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
       }else{
         document.getElementById(
           "tablero-control-distacia-recorrida"
@@ -359,7 +399,7 @@ class Ubicacion {
     return (
       (numParadas = Math.floor(Math.random() * (4 - 1) + 1)),
       (timeParada = Math.floor(Math.random() * (6 - 1) + 1)),
-      (kmXParada = Math.floor(distanciaRecorrido / numParadas)),
+      (kmXParada = Math.floor((distanciaRecorrido - 100) / numParadas)),
       console.log(numParadas),
       console.log(timeParada),
       console.log(kmXParada)

@@ -343,7 +343,7 @@ body {
   height: 98%;
   z-index: 1000;
   display: none;
-  background-color: rgba(0, 0, 0, 0.911);
+  background-color: rgba(0, 0, 0, 0.973);
 }
 .p-stop-fin-trayecto{
   color: white;
