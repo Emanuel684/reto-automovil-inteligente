@@ -63,11 +63,15 @@ function cal_velocidadCrucero() {
   cal_distanciaRecorrida();
   cal_tiempoViaje();
 
-  if (velocidadAcelerando < 30 && cajaCambios === 1 && comprobante_parada === false) {
+  if (
+    velocidadAcelerando < 30 &&
+    cajaCambios === 1 &&
+    comprobante_parada === false
+  ) {
     document.getElementById(
       "tablero-control-velocidad-actual"
     ).innerHTML = `Velocidad: ${(velocidadAcelerando += 2)} KM/H`;
-     stop_timeout = setTimeout(cal_velocidadCrucero, 1000);
+    stop_timeout = setTimeout(cal_velocidadCrucero, 1000);
   } else if (velocidadAcelerando >= 30 && cajaCambios === 1) {
     console.log("Se ejecuto el else if para la marcha 1.");
     document.getElementById("tablero-control").innerHTML =
@@ -77,7 +81,8 @@ function cal_velocidadCrucero() {
   if (
     velocidadAcelerando >= 30 &&
     velocidadAcelerando < 60 &&
-    cajaCambios === 2
+    cajaCambios === 2 &&
+    comprobante_parada === false
   ) {
     document.getElementById(
       "tablero-control-velocidad-actual"
@@ -86,7 +91,7 @@ function cal_velocidadCrucero() {
   } else if (
     velocidadAcelerando > 30 &&
     velocidadAcelerando === 60 &&
-    cajaCambios === 2
+    cajaCambios === 2 
   ) {
     document.getElementById("tablero-control").innerHTML =
       "Cambie a la siguiente marcha 3.";
@@ -95,7 +100,8 @@ function cal_velocidadCrucero() {
   if (
     velocidadAcelerando >= 60 &&
     velocidadAcelerando < 86 &&
-    cajaCambios === 3
+    cajaCambios === 3 &&
+    comprobante_parada === false
   ) {
     document.getElementById(
       "tablero-control-velocidad-actual"
@@ -113,7 +119,8 @@ function cal_velocidadCrucero() {
   if (
     velocidadAcelerando >= 86 &&
     velocidadAcelerando < 110 &&
-    cajaCambios === 4
+    cajaCambios === 4 &&
+    comprobante_parada === false
   ) {
     document.getElementById(
       "tablero-control-velocidad-actual"
@@ -152,9 +159,6 @@ function cal_tiempoViaje() {
     // console.log('Esta es la varaible var_tiempo_faltante:', var_tiempo_faltante);
   }
 
-
-
-
   /*
   timeViaje_Tesla = Math.floor(Math.sqrt(distanciaRecorrido));
   document.getElementById(
@@ -171,50 +175,58 @@ function cal_tiempoViaje() {
 */
 }
 
- function time_action_Parada() {
-  
-    console.log(timeParada);
-    console.log(time_en_parada);
-  
+function time_action_Parada() {
+  console.log(timeParada);
+  console.log(time_en_parada);
 
-    if(time_en_parada === 0 && comprobante_tiempo_en_parada === 0){
-      time_en_parada = timeParada;
-      comprobante_tiempo_en_parada = 1;
-      console.log('Se ejecuto el if con el comprobante:',comprobante_tiempo_en_parada,time_en_parada);
-    }
+  if (time_en_parada === 0 && comprobante_tiempo_en_parada === 0) {
+    time_en_parada = timeParada;
+    comprobante_tiempo_en_parada = 1;
+    console.log(
+      "Se ejecuto el if con el comprobante:",
+      comprobante_tiempo_en_parada,
+      time_en_parada
+    );
+  }
 
-
-    if(time_en_parada > 0){
-
-      document.getElementById('div-stop-fin-trayecto-id').style.display = 'block';
-      clearTimeout(stop_timeout);
-      comprobante_parada = true;
-      let interval = setInterval(function () {
-        if(time_en_parada > 0 && document.getElementById('div-stop-fin-trayecto-id').style.display == 'block'){
-          document.getElementById('p-stop-parada-tiempo').innerHTML = `Tiempo:${time_en_parada -= 1}`;
-      }else{
-        console.log('Esto es dentro del else:',time_en_parada);
-        document.getElementById('p-stop-parada-tiempo').innerHTML = `Tiempo:${time_en_parada}`;
-        document.getElementById('div-stop-fin-trayecto-id').style.display = "none";
+  if (time_en_parada > 0) {
+    document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
+    clearTimeout(stop_timeout);
+    comprobante_parada = true;
+    let interval = setInterval(function () {
+      if (
+        time_en_parada > 0 &&
+        document.getElementById("div-stop-fin-trayecto-id").style.display ==
+          "block"
+      ) {
+        document.getElementById(
+          "p-stop-parada-tiempo"
+        ).innerHTML = `Tiempo:${(time_en_parada -= 1)}`;
+      } else {
+        console.log("Esto es dentro del else:", time_en_parada);
+        document.getElementById(
+          "p-stop-parada-tiempo"
+        ).innerHTML = `Tiempo:${time_en_parada}`;
+        document.getElementById("div-stop-fin-trayecto-id").style.display =
+          "none";
         comprobante_parada = false;
-        console.log('Parada terminada.');
-         
+        console.log("Parada terminada.");
+
         time_en_parada = timeParada;
         clearInterval(interval);
       }
-      }, 1500);
-      console.log('timeParada en el condicional:',time_en_parada);
-      
-      // setTimeout(time_action_Parada(),800);
+    }, 1500);
+    console.log("timeParada en el condicional:", time_en_parada);
 
-    }
- }
+    // setTimeout(time_action_Parada(),800);
+  }
+}
 
 function cal_distanciaRecorrida() {
   var_recorrido_recorrer = distanciaRecorrido;
   // km_parada_lista = kmXParada;
-  console.log('Km_parada_lista antes del ciclo:',km_parada_lista);
-  console.log('kmXParada fuera de ciclo:',kmXParada);
+  console.log("Km_parada_lista antes del ciclo:", km_parada_lista);
+  console.log("kmXParada fuera de ciclo:", kmXParada);
 
   // distanciaRecorrida_velocidad = distanciaRecorrido;
   if (distanciaRecorrida_velocidad < distanciaRecorrido) {
@@ -223,56 +235,59 @@ function cal_distanciaRecorrida() {
     distanciaRecorrida_velocidad =
       distanciaRecorrida_velocidad + velocidadAcelerando;
 
-      if(km_parada_lista === 0){
-        km_parada_lista = kmXParada;
-        console.log('km_parada_lista era 0 ahora es:',kmXParada);
-      }
-    
+    if (km_parada_lista === 0) {
+      km_parada_lista = kmXParada;
+      console.log("km_parada_lista era 0 ahora es:", kmXParada);
+    }
+
     // Esta parte es para crear las paradas
     console.log(numParadas, timeParada, kmXParada);
 
-    if(distanciaRecorrida_velocidad >= km_parada_lista && cantidad_Paradas_listas < numParadas){
+    if (
+      distanciaRecorrida_velocidad >= km_parada_lista &&
+      cantidad_Paradas_listas < numParadas
+    ) {
       cantidad_Paradas_listas++;
-      console.log('Se ejecuto la parada:',cantidad_Paradas_listas);
+      console.log("Se ejecuto la parada:", cantidad_Paradas_listas);
 
       // km_parada_lista = km_parada_lista + kmXParada;
       // kmXParada = kmXParada + kmXParada;
       km_parada_lista = km_parada_lista + kmXParada;
-      console.log('kmXParada en ciclo:',kmXParada)
-      console.log('km_parada_lista en ciclo: ', km_parada_lista);
+      console.log("kmXParada en ciclo:", kmXParada);
+      console.log("km_parada_lista en ciclo: ", km_parada_lista);
 
       time_action_Parada();
 
-
-      if(distanciaRecorrida_velocidad > distanciaRecorrido){
+      if (distanciaRecorrida_velocidad > distanciaRecorrido) {
         distanciaRecorrida_velocidad = distanciaRecorrido;
-    document.getElementById(
-      "tablero-control-distacia-recorrida"
-    ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
-    document.getElementById("p-stop-parada-tiempo").innerHTML = "Trayecto Finalizado...";
-    document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
-      }else{
+        document.getElementById(
+          "tablero-control-distacia-recorrida"
+        ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+        document.getElementById("p-stop-parada-tiempo").innerHTML =
+          "Trayecto Finalizado...";
+        document.getElementById("div-stop-fin-trayecto-id").style.display =
+          "block";
+      } else {
         document.getElementById(
           "tablero-control-distacia-recorrida"
         ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
       }
-    
-    }else{
-      if(distanciaRecorrida_velocidad > distanciaRecorrido){
+    } else {
+      if (distanciaRecorrida_velocidad > distanciaRecorrido) {
         distanciaRecorrida_velocidad = distanciaRecorrido;
-    document.getElementById(
-      "tablero-control-distacia-recorrida"
-    ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
-    document.getElementById("p-stop-parada-tiempo").innerHTML = "Trayecto Finalizado...";
-    document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
-      }else{
+        document.getElementById(
+          "tablero-control-distacia-recorrida"
+        ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+        document.getElementById("p-stop-parada-tiempo").innerHTML =
+          "Trayecto Finalizado...";
+        document.getElementById("div-stop-fin-trayecto-id").style.display =
+          "block";
+      } else {
         document.getElementById(
           "tablero-control-distacia-recorrida"
         ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
       }
     }
-
-    
 
     // Fin
     /*
@@ -541,7 +556,6 @@ class Tesla {
           this.acelerandoTesla()
         );
       } else if (acelerador === false && cajaCambios != 0) {
-        
         document.getElementById("tablero-control").innerHTML =
           "El acelerador se encuentra activado.";
         console.log("Acelerador activado.");
@@ -549,7 +563,6 @@ class Tesla {
           (acelerador = true), (variableArranque = true), this.acelerandoTesla()
         );
       }
-      
 
       // Esta es una linea de comiezo para solucionar un error
       /*
@@ -565,7 +578,6 @@ class Tesla {
         )
       }
       */
-
     } else {
       document.getElementById("tablero-control").innerHTML =
         "El carro no se encuentra encendido.";
