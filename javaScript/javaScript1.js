@@ -1,28 +1,21 @@
 "use strict";
-
 // VARAIBLES MIENTRAS CONDUCE
-
 // Variables para la localizacion en el mapa
 let numParadas = 0;
 let distanciaRecorrido = 0;
 let timeParada = 0;
 let kmXParada = 0;
 // Fin variables de ubicacion
-
 let stop_timeout = 0;
-
 let var_recorrido_recorrer = 0;
 // let var_tiempo_faltante = 0;
-
 // Variables para las paradas
 let cantidad_Paradas_listas = 0;
 let km_parada_lista = 0;
 let time_en_parada = 0;
 // Comprobante para las paradas
 let comprobante_tiempo_en_parada = 0;
-
 let comprobante_parada = false;
-
 let comprobante_frenado = false;
 // Fin
 
@@ -33,7 +26,6 @@ let timeViaje_Tesla = 0;
 // Fin de las variables para calcular
 
 // FIN VARIABLES MIENTRAS CONDUCE
-
 // Variables utilizadas
 
 let cajaCambios = null;
@@ -50,7 +42,6 @@ let variableArranque = false;
 let luzEstacionarias = false;
 let varDireccionalDerecha = false;
 let varDireccionalIzquierda = false;
-
 // Fin variables
 
 // Funciones mientras conduce
@@ -95,7 +86,7 @@ function cal_velocidadCrucero() {
   } else if (
     velocidadAcelerando > 30 &&
     velocidadAcelerando === 60 &&
-    cajaCambios === 2 
+    cajaCambios === 2
   ) {
     document.getElementById("tablero-control").innerHTML =
       "Cambie a la siguiente marcha 3.";
@@ -143,19 +134,23 @@ function cal_velocidadCrucero() {
 }
 
 function cal_frenadoVelocidad() {
-  console.log('Se esta ejecutando la funcion de frenado.');
-  console.log()
+  console.log("Se esta ejecutando la funcion de frenado.");
+  console.log();
   if (freno === true && comprobante_frenado === false && cajaCambios === 1) {
-    console.log('Se ejecuto el if del cal_frenadoVelocidad')
-    
-    console.log('Quite el freno de pie.')
+    console.log("Se ejecuto el if del cal_frenadoVelocidad");
 
-    document.getElementById('tablero-control-velocidad-actual').innerHTML = `Velocidad: ${(velocidadAcelerando = 0)} KM/H`
-    document.getElementById("tablero-control").innerHTML = `Se encuentra frenado.`;
-    console.log('comprobante_frenado:',comprobante_frenado);
-    return comprobante_frenado = true;
-  }else if(comprobante_frenado === true){
-    return comprobante_frenado = false;
+    console.log("Quite el freno de pie.");
+
+    document.getElementById(
+      "tablero-control-velocidad-actual"
+    ).innerHTML = `Velocidad: ${(velocidadAcelerando = 0)} KM/H`;
+    document.getElementById(
+      "tablero-control"
+    ).innerHTML = `Se encuentra frenado.`;
+    console.log("comprobante_frenado:", comprobante_frenado);
+    return (comprobante_frenado = true);
+  } else if (comprobante_frenado === true) {
+    return (comprobante_frenado = false);
   }
 }
 
@@ -243,7 +238,7 @@ function cal_distanciaRecorrida() {
   console.log("kmXParada fuera de ciclo:", kmXParada);
 
   // distanciaRecorrida_velocidad = distanciaRecorrido;
-  if (distanciaRecorrida_velocidad < distanciaRecorrido ) {
+  if (distanciaRecorrida_velocidad < distanciaRecorrido) {
     var_recorrido_recorrer =
       var_recorrido_recorrer - distanciaRecorrida_velocidad;
     distanciaRecorrida_velocidad =
@@ -301,7 +296,6 @@ function cal_distanciaRecorrida() {
       }
     }
   }
-    
 
   // distanciaRecorrida_velocidad = distanciaRecorrido - 2;
   console.log("Esta es la distacia a recorrer:", distanciaRecorrido);
@@ -422,16 +416,16 @@ class Ubicacion {
     var valor = prompt("Cuantos kilometros deseas recorrer?", "");
     if (valor != "") {
       // alert("Gracias por ingresar el valor: " + valor);
-      distanciaRecorrido = parseInt(valor,10);
-      if(distanciaRecorrido >= 200){
+      distanciaRecorrido = parseInt(valor, 10);
+      if (distanciaRecorrido >= 200) {
         // console.log('Se ingreso un valor mayor que 200.');
         return (
-          (distanciaRecorrido),
+          distanciaRecorrido,
           this.calcularDestino(),
           console.log(distanciaRecorrido)
         );
-      }else{
-        alert('Debe ingresar un valor mayor a 200 Kilometros.');
+      } else {
+        alert("Debe ingresar un valor mayor a 200 Kilometros.");
       }
     } else {
       alert("Debe ingresar un valor.");
@@ -536,7 +530,9 @@ class Tesla {
       } else if (freno === false) {
         document.getElementById("tablero-control").innerHTML =
           "El freno de pie, se encuentra activado.";
-        return (freno = true, console.log('Frenado:',freno), cal_frenadoVelocidad());
+        return (
+          (freno = true), console.log("Frenado:", freno), cal_frenadoVelocidad()
+        );
       }
     } else {
       document.getElementById("tablero-control").innerHTML =
@@ -550,18 +546,23 @@ class Tesla {
         document.getElementById("tablero-control").innerHTML =
           "El acelerador se encuentra desactivado.";
         return (acelerador = false), console.log(acelerador);
-      } else if (acelerador === false && cajaCambios === 1 && clutch === true && freno === true) {
-
-        document.getElementById("tablero-control").innerHTML ="Puede quitar el freno de pie y el clutch.";
-      }else if (acelerador === false && cajaCambios != 0) {
-        console.log('Este es el else if con el != 0')
-        document.getElementById("tablero-control").innerHTML = "El acelerador se encuentra activado.";
+      } else if (
+        acelerador === false &&
+        cajaCambios === 1 &&
+        clutch === true &&
+        freno === true
+      ) {
+        document.getElementById("tablero-control").innerHTML =
+          "Puede quitar el freno de pie y el clutch.";
+      } else if (acelerador === false && cajaCambios != 0) {
+        console.log("Este es el else if con el != 0");
+        document.getElementById("tablero-control").innerHTML =
+          "El acelerador se encuentra activado.";
         console.log("Acelerador activado.");
         return (
           (acelerador = true), (variableArranque = true), this.acelerandoTesla()
         );
       }
-
     } else {
       document.getElementById("tablero-control").innerHTML =
         "El carro no se encuentra encendido.";
@@ -708,23 +709,23 @@ let actionTesla = new Tesla();
 let mapaTesla = new Ubicacion();
 
 // Prueba de carro al encender
-window.addEventListener("load",function(){
-	document.getElementById("play").addEventListener("click",sonarCarro);
-	document.getElementById("stop").addEventListener("click",callarCarro);			
+window.addEventListener("load", function () {
+  // document.getElementById("play").addEventListener("click",sonarCarro);
+  document.getElementById("stop").addEventListener("click", callarCarro);
 });
 
-function sonarCarro(){
-	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","audio/encendidoAuto3.mp3");
-	document.body.appendChild(sonido);
-	document.getElementById("play").removeEventListener("click",sonarCarro);
+function sonarCarro() {
+  var sonido = document.createElement("iframe");
+  sonido.setAttribute("src", "audio/encendidoAuto3.mp3");
+  document.body.appendChild(sonido);
+  document.getElementById("play").removeEventListener("click", sonarCarro);
 }
 
-function callarCarro(){
-	var iframe = document.getElementsByTagName("iframe");
+function callarCarro() {
+  var iframe = document.getElementsByTagName("iframe");
 
-	if (iframe.length > 0){
-		iframe[0].parentNode.removeChild(iframe[0]);
-		document.getElementById("play").addEventListener("click",sonarCarro);
-	}
+  if (iframe.length > 0) {
+    iframe[0].parentNode.removeChild(iframe[0]);
+    document.getElementById("play").addEventListener("click", sonarCarro);
+  }
 }
