@@ -715,7 +715,7 @@ window.addEventListener("load",function(){
 
 function sonarCarro(){
 	var sonido = document.createElement("iframe");
-	sonido.setAttribute("src","audio/encendidoAuto2.mp3");
+	sonido.setAttribute("src","audio/encendidoAuto3.mp3");
 	document.body.appendChild(sonido);
 	document.getElementById("play").removeEventListener("click",sonarCarro);
 }

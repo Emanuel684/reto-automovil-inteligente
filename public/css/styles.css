@@ -4,6 +4,7 @@ body {
 .div-tablero-info-control {
   position: fixed;
   background-color: black;
+  border-radius: 7px;
   top: 2%;
   right: 2%;
   width: 350px;
@@ -20,6 +21,7 @@ body {
 .div-tablero-info-control-distancia-recorrida {
   position: fixed;
   background-color: black;
+  border-radius: 7px;
   top: 2%;
   right: 87%;
   font-size: 15px;
@@ -30,6 +32,7 @@ body {
 .div-tablero-info-control-velocidad-actual {
   position: fixed;
   background-color: black;
+  border-radius: 7px;
   top: 2%;
   right: 75%;
   font-size: 15px;
@@ -40,6 +43,7 @@ body {
 .div-tablero-info-control-tiempo-transcurrido-viaje {
   position: fixed;
   background-color: black;
+  border-radius: 7px;
   top: 2%;
   right: 63%;
   font-size: 15px;
