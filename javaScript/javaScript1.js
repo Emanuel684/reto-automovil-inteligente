@@ -220,7 +220,12 @@ function time_action_Parada() {
           "none";
         comprobante_parada = false;
         console.log("Parada terminada.");
-
+        document.getElementById('tablero-control-velocidad-actual').innerHTML = `Velocidad: ${velocidadAcelerando = 0} KM/H`;
+        actionTesla.funcionAcelerador();
+        actionTesla.funcionFrenado();
+        actionTesla.funcionClutch();
+        actionTesla.luzEstacionarias();
+        document.getElementById('tablero-control').innerHTML = 'Parada terminada, vuelva a iniciar la marcha.';
         time_en_parada = timeParada;
         clearInterval(interval);
       }
@@ -615,6 +620,7 @@ class Tesla {
         (varDireccionalDerecha = false),
         (varDireccionalIzquierda = false),
         (luzEstacionarias = false),
+        (callarIntermitente()),
         console.log(luzEstacionarias)
       );
     } else if (luzEstacionarias === false) {
@@ -626,6 +632,7 @@ class Tesla {
         (varDireccionalDerecha = true),
         (varDireccionalIzquierda = true),
         (luzEstacionarias = true),
+        (sonarIntermitente()),
         console.log(luzEstacionarias)
       );
     }
@@ -659,11 +666,11 @@ class Tesla {
     if (varDireccionalDerecha === false) {
       document.getElementById("direccional-derecha-amarillo").style.display =
         "block";
-      return (varDireccionalDerecha = true);
+      return (varDireccionalDerecha = true,sonarIntermitente());
     } else if (varDireccionalDerecha === true) {
       document.getElementById("direccional-derecha-amarillo").style.display =
         "none";
-      return (varDireccionalDerecha = false);
+      return (varDireccionalDerecha = false,callarIntermitente());
     }
   }
   // FIN DE LA FUNCIONALIDAD DE LA DIRECCIONAL DERECHA
@@ -694,11 +701,11 @@ class Tesla {
     if (varDireccionalIzquierda === false) {
       document.getElementById("direccional-izquierda-amarillo").style.display =
         "block";
-      return (varDireccionalIzquierda = true);
+      return (varDireccionalIzquierda = true,sonarIntermitente());
     } else if (varDireccionalIzquierda === true) {
       document.getElementById("direccional-izquierda-amarillo").style.display =
         "none";
-      return (varDireccionalIzquierda = false);
+      return (varDireccionalIzquierda = false,callarIntermitente());
     }
   }
   // FIN DE LA FUNCIONALIDAD DE LA DIRECCIONAL IZQUIERDA
@@ -720,7 +727,7 @@ function sonarCarro() {
   var sonido = document.createElement("iframe");
   sonido.setAttribute("src", "audio/encendidoAuto3.mp3");
   document.body.appendChild(sonido);
-  document.getElementById("play").removeEventListener("click", sonarCarro);
+ // document.getElementById("play").removeEventListener("click", sonarCarro);
 }
 
 function callarCarro() {
@@ -728,6 +735,24 @@ function callarCarro() {
 
   if (iframe.length > 0) {
     iframe[0].parentNode.removeChild(iframe[0]);
-    document.getElementById("play").addEventListener("click", sonarCarro);
+   // document.getElementById("play").addEventListener("click", sonarCarro);
+  }
+}
+
+// Sonido de la sintermitentes
+
+function sonarIntermitente() {
+  var sonido = document.createElement("iframe");
+  sonido.setAttribute("src", "audio/intermitente.mp3");
+  document.body.appendChild(sonido);
+ // document.getElementById("play").removeEventListener("click", sonarIntermitente);
+}
+
+function callarIntermitente() {
+  var iframe = document.getElementsByTagName("iframe");
+
+  if (iframe.length > 0) {
+    iframe[0].parentNode.removeChild(iframe[0]);
+   // document.getElementById("play").addEventListener("click", sonarIntermitente);
   }
 }
