@@ -270,6 +270,7 @@ function cal_distanciaRecorrida() {
         document.getElementById(
           "tablero-control-distacia-recorrida"
         ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+        comprobante_parada = true;
         document.getElementById("p-stop-parada-tiempo").innerHTML =
           "Trayecto Finalizado...";
         document.getElementById("div-stop-fin-trayecto-id").style.display =
@@ -285,6 +286,7 @@ function cal_distanciaRecorrida() {
         document.getElementById(
           "tablero-control-distacia-recorrida"
         ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
+        comprobante_parada = true;
         document.getElementById("p-stop-parada-tiempo").innerHTML =
           "Trayecto Finalizado...";
         document.getElementById("div-stop-fin-trayecto-id").style.display =
@@ -440,8 +442,8 @@ class Tesla {
       return (
         (variableEncendido = true),
         console.log(variableEncendido),
-        sonarCarro(),
-        mapaTesla.distanciaRecorrido()
+        mapaTesla.distanciaRecorrido(),
+        sonarCarro()
       );
     } else if (cajaCambios != 0) {
       document.getElementById("tablero-control").innerHTML = "Poner en neutra.";
