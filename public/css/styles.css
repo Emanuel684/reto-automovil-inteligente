@@ -51,7 +51,6 @@ body {
   height: 60px;
 }
 
-
 /* Fin partes del tablero */
 
 .img-tablero-images {
@@ -230,24 +229,36 @@ body {
   border: 0px;
 }
 
-
 /* ANIMACIONES */
 @-webkit-keyframes alerta {
-  from {opacity: 0;}
-  25% {opacity: 1;}
-  75% {opacity: 1;}
-  to {opacity: 0;}
-} 
-
-@keyframes alerta {
-  from {opacity: 0;}
-  25% {opacity: 1;}
-  75% {opacity: 1;}
-  to {opacity: 0;}
+  from {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
-
-
+@keyframes alerta {
+  from {
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
 /* BOTONES DE LA CAJA DE CAMBIOS */
 .cambios-box-div {
@@ -341,7 +352,7 @@ body {
 }
 
 /* Alerta al finalizar el trayecto */
-.div-stop-fin-trayecto{
+.div-stop-fin-trayecto {
   position: fixed;
   width: 99%;
   height: 98%;
@@ -349,43 +360,44 @@ body {
   display: none;
   background-color: rgba(0, 0, 0, 0.973);
 }
-.p-stop-fin-trayecto{
+.p-stop-fin-trayecto {
   color: white;
   z-index: 1000;
   font-size: 50px;
   font-weight: bold;
   text-align: center;
 }
-.img-stop-fin-trayecto{
+.img-stop-fin-trayecto {
   height: 400px;
   z-index: 1000;
   width: 400px;
-  display:block;
+  display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-
-#play{
+#play {
   position: fixed;
   bottom: 69%;
   right: 2%;
-	display:inline-block;
-	padding:16px;
-  border-radius:5px;
+  display: inline-block;
+  padding: 16px;
+  border-radius: 5px;
   background-color: black;
   font-weight: bold;
   color: white;
 }
-#stop{
+#stop {
   position: fixed;
   bottom: 78%;
   right: 2%;
-	display:inline-block;
-	padding:16px;
-	background-color: black;
-  border-radius:5px;
+  display: inline-block;
+  padding: 16px;
+  background-color: black;
+  border-radius: 5px;
   font-weight: bold;
   color: white;
 }
-iframe{display:none;}
+iframe {
+  display: none;
+}
