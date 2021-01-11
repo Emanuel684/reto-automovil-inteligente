@@ -401,3 +401,11 @@ body {
 iframe {
   display: none;
 }
+
+.footer {
+  position: fixed;
+  bottom: 1%;
+  right: 1%;
+  color: white;
+  font-weight: bold;
+}
