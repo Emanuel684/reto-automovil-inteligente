@@ -136,7 +136,7 @@ function cal_velocidadCrucero() {
 function cal_frenadoVelocidad() {
   console.log("Se esta ejecutando la funcion de frenado.");
   console.log();
-  if (freno === true && comprobante_frenado === false && cajaCambios === 1) {
+  if (freno === true && comprobante_frenado === false && cajaCambios != 0) {
     console.log("Se ejecuto el if del cal_frenadoVelocidad");
 
     console.log("Quite el freno de pie.");
@@ -147,10 +147,14 @@ function cal_frenadoVelocidad() {
     document.getElementById(
       "tablero-control"
     ).innerHTML = `Se encuentra frenado.`;
+    actionTesla.funcionClutch();
+    console.log('Estes es el clutch en el frenado:', clutch);
+    actionTesla.funcionAcelerador();
+    console.log('Este es el acelerado en el frenado:',acelerador);
     console.log("comprobante_frenado:", comprobante_frenado);
     return (comprobante_frenado = true);
-  } else if (comprobante_frenado === true) {
-    return (comprobante_frenado = false);
+  } else if (freno === false && comprobante_frenado === true && cajaCambios != 0) {
+    return (comprobante_frenado = false,console.log('Esta es el comprobante_frenado del else if:',comprobante_frenado));
   }
 }
 
@@ -536,7 +540,7 @@ class Tesla {
       if (freno === true) {
         document.getElementById("tablero-control").innerHTML =
           "El freno de pie, se encuentra desactivado.";
-        return (freno = false), console.log(freno);
+        return (freno = false, console.log('Frenado:',freno), cal_frenadoVelocidad());
       } else if (freno === false) {
         document.getElementById("tablero-control").innerHTML =
           "El freno de pie, se encuentra activado.";
