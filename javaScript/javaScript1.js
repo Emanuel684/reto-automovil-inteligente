@@ -140,22 +140,19 @@ function cal_velocidadCrucero() {
     comprobante_parada === false &&
     comprobante_frenado === false
   ) {
-    console.log('Esto es la parte para retroceder.');
-    console.log('En esta parte se ejecuta la musica de retroceder');
-    document.getElementById("tablero-control-tiempo-transcurrido").innerHTML =
-      `Tiempo: ${timeViaje_Tesla = 0} Min`;
+    console.log("Esto es la parte para retroceder.");
+    console.log("En esta parte se ejecuta la musica de retroceder");
+    document.getElementById(
+      "tablero-control-tiempo-transcurrido"
+    ).innerHTML = `Tiempo: ${(timeViaje_Tesla = 0)} Min`;
     timeRetroceso();
-    document.getElementById('tablero-control').innerHTML = 'Apagando automovil...';
-  } else if (
-    velocidadAcelerando == 0 &&
-    cajaCambios === 5
-  ) {
-    console.log('Esta es la parte para retroceder');
+    document.getElementById("tablero-control").innerHTML =
+      "Apagando automovil...";
+  } else if (velocidadAcelerando == 0 && cajaCambios === 5) {
+    console.log("Esta es la parte para retroceder");
     document.getElementById("tablero-control").innerHTML =
       "No retrocediendo Retrocediendo.";
   }
-
-
 }
 
 function cal_frenadoVelocidad() {
@@ -172,13 +169,23 @@ function cal_frenadoVelocidad() {
       "tablero-control"
     ).innerHTML = `Se encuentra frenado.`;
     actionTesla.funcionClutch();
-    console.log('Estes es el clutch en el frenado:', clutch);
+    console.log("Estes es el clutch en el frenado:", clutch);
     actionTesla.funcionAcelerador();
-    console.log('Este es el acelerado en el frenado:',acelerador);
+    console.log("Este es el acelerado en el frenado:", acelerador);
     console.log("comprobante_frenado:", comprobante_frenado);
     return (comprobante_frenado = true);
-  } else if (freno === false && comprobante_frenado === true && cajaCambios != 0) {
-    return (comprobante_frenado = false,console.log('Esta es el comprobante_frenado del else if:',comprobante_frenado));
+  } else if (
+    freno === false &&
+    comprobante_frenado === true &&
+    cajaCambios != 0
+  ) {
+    return (
+      (comprobante_frenado = false),
+      console.log(
+        "Esta es el comprobante_frenado del else if:",
+        comprobante_frenado
+      )
+    );
   }
 }
 
@@ -306,10 +313,11 @@ function cal_distanciaRecorrida() {
         document.getElementById(
           "tablero-control-distacia-recorrida"
         ).innerHTML = `Distacia recorrida: ${distanciaRecorrida_velocidad} KM`;
-        console.log('Esta es intervalFinal time_en_parada:',time_en_parada);
+        console.log("Esta es intervalFinal time_en_parada:", time_en_parada);
         // comprobante_parada = true;
         if (time_en_parada > 0) {
-          document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
+          document.getElementById("div-stop-fin-trayecto-id").style.display =
+            "block";
           document.getElementById(
             "p-stop-parada-tiempo"
           ).innerHTML = `Trayecto Finalizado...`;
@@ -318,8 +326,8 @@ function cal_distanciaRecorrida() {
           let interval = setInterval(function () {
             if (
               time_en_parada > 0 &&
-              document.getElementById("div-stop-fin-trayecto-id").style.display ==
-                "block"
+              document.getElementById("div-stop-fin-trayecto-id").style
+                .display == "block"
             ) {
               document.getElementById(
                 "p-stop-parada-tiempo"
@@ -330,26 +338,30 @@ function cal_distanciaRecorrida() {
               document.getElementById(
                 "p-stop-parada-tiempo"
               ).innerHTML = `Trayecto Finalizado...`;
-              document.getElementById("div-stop-fin-trayecto-id").style.display =
-                "none";
+              document.getElementById(
+                "div-stop-fin-trayecto-id"
+              ).style.display = "none";
               comprobante_parada = false;
               console.log("Final terminado.");
-              document.getElementById("tablero-control-velocidad-actual").innerHTML = `Velocidad: ${(velocidadAcelerando = 0)} KM/H`;
-              document.getElementById('tablero-control-tiempo-transcurrido').innerHTML = `Tiempo: ${timeViaje_Tesla = 0} Min`;
+              document.getElementById(
+                "tablero-control-velocidad-actual"
+              ).innerHTML = `Velocidad: ${(velocidadAcelerando = 0)} KM/H`;
+              document.getElementById(
+                "tablero-control-tiempo-transcurrido"
+              ).innerHTML = `Tiempo: ${(timeViaje_Tesla = 0)} Min`;
               actionTesla.funcionAcelerador();
               actionTesla.funcionFrenado();
               actionTesla.funcionClutch();
               actionTesla.luzEstacionarias();
               document.getElementById("tablero-control").innerHTML =
                 "Finalizo su trayecto...";
-                alert("Retroceda el automovil...");
+              alert("Retroceda el automovil...");
               time_en_parada = timeParada;
               clearInterval(interval);
             }
           }, 2000);
-      
         }
-        
+
         /*
         document.getElementById("p-stop-parada-tiempo").innerHTML =
           "Trayecto Finalizado...";
@@ -370,7 +382,8 @@ function cal_distanciaRecorrida() {
         // comprobante_parada = true;
 
         if (time_en_parada > 0) {
-          document.getElementById("div-stop-fin-trayecto-id").style.display = "block";
+          document.getElementById("div-stop-fin-trayecto-id").style.display =
+            "block";
           document.getElementById(
             "p-stop-parada-tiempo"
           ).innerHTML = `Trayecto Finalizado...`;
@@ -379,8 +392,8 @@ function cal_distanciaRecorrida() {
           let interval = setInterval(function () {
             if (
               time_en_parada > 0 &&
-              document.getElementById("div-stop-fin-trayecto-id").style.display ==
-                "block"
+              document.getElementById("div-stop-fin-trayecto-id").style
+                .display == "block"
             ) {
               document.getElementById(
                 "p-stop-parada-tiempo"
@@ -391,24 +404,28 @@ function cal_distanciaRecorrida() {
               document.getElementById(
                 "p-stop-parada-tiempo"
               ).innerHTML = `Trayecto Finalizado...`;
-              document.getElementById("div-stop-fin-trayecto-id").style.display =
-                "none";
+              document.getElementById(
+                "div-stop-fin-trayecto-id"
+              ).style.display = "none";
               comprobante_parada = false;
               console.log("Final terminado.");
-              document.getElementById("tablero-control-velocidad-actual").innerHTML = `Velocidad: ${(velocidadAcelerando = 0)} KM/H`;
-              document.getElementById('tablero-control-tiempo-transcurrido').innerHTML = `Tiempo: ${timeViaje_Tesla = 0} Min`;
+              document.getElementById(
+                "tablero-control-velocidad-actual"
+              ).innerHTML = `Velocidad: ${(velocidadAcelerando = 0)} KM/H`;
+              document.getElementById(
+                "tablero-control-tiempo-transcurrido"
+              ).innerHTML = `Tiempo: ${(timeViaje_Tesla = 0)} Min`;
               actionTesla.funcionAcelerador();
               actionTesla.funcionFrenado();
               actionTesla.funcionClutch();
               actionTesla.luzEstacionarias();
               document.getElementById("tablero-control").innerHTML =
                 "Finalizo su trayecto...";
-                alert("Retroceda el automovil...");
+              alert("Retroceda el automovil...");
               time_en_parada = timeParada;
               clearInterval(interval);
             }
           }, 2000);
-      
         }
 
         /*
@@ -453,9 +470,9 @@ function time(e) {
 // Funcion para el retroceso
 function timeRetroceso() {
   setTimeout(function () {
-    document.getElementById('tablero-control').innerHTML = 'Retrocediendo...';
+    document.getElementById("tablero-control").innerHTML = "Retrocediendo...";
     sonarRetroceder();
-  }, 1500)
+  }, 1500);
 }
 
 // Fin funcion para el retroceso
@@ -664,7 +681,11 @@ class Tesla {
       if (freno === true) {
         document.getElementById("tablero-control").innerHTML =
           "El freno de pie, se encuentra desactivado.";
-        return (freno = false, console.log('Frenado:',freno), cal_frenadoVelocidad());
+        return (
+          (freno = false),
+          console.log("Frenado:", freno),
+          cal_frenadoVelocidad()
+        );
       } else if (freno === false) {
         document.getElementById("tablero-control").innerHTML =
           "El freno de pie, se encuentra activado.";
@@ -887,7 +908,6 @@ function callarIntermitente() {
     // document.getElementById("play").addEventListener("click", sonarIntermitente);
   }
 }
-
 
 // Sonido de retroceder
 
