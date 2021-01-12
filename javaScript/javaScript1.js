@@ -148,7 +148,7 @@ function cal_velocidadCrucero() {
     timeRetroceso();
     document.getElementById("tablero-control").innerHTML =
       "Apagando automovil...";
-  } else if (velocidadAcelerando == 0 && cajaCambios === 5) {
+  } else if (velocidadAcelerando != 0 && cajaCambios === 5) {
     console.log("Esta es la parte para retroceder");
     document.getElementById("tablero-control").innerHTML =
       "No retrocediendo Retrocediendo.";
